@@ -56,10 +56,11 @@ def find_maximum_subarray(array, low, high):
         else:
             return (cross_left, cross_right, cross_sum)
 
-A = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
-(left, right, sumValue) = find_maximum_subarray(A, 0, len(A)-1)
-print("left is : {0}, right is : {1}, Sum is : {2}".
-          format(left, right, sumValue))
+if __name__ == '__main__':
+    A = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7]
+    (left, right, sumValue) = find_maximum_subarray(A, 0, len(A)-1)
+    print("left is : {0}, right is : {1}, Sum is : {2}".
+            format(left, right, sumValue))
 """
 out:
 left is : 7, right is : 10, Sum is : 43

@@ -29,7 +29,8 @@ def counting_sort(A, B, k):
         B[C[A[j]]-1] = A[j]
         C[A[j]] = C[A[j]] - 1
 
-A = [2,5,3,0,2,3,0,3]
-B = [0,0,0,0,0,0,0,0]
-counting_sort(A, B, 5)
-print(B)
+if __name__ == '__main__':
+    A = [2,5,3,0,2,3,0,3]
+    B = [0,0,0,0,0,0,0,0]
+    counting_sort(A, B, 5)
+    print(B)

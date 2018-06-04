@@ -20,7 +20,8 @@ def matrix_multiply(A,B):
                 for k in range(A_col):
                     C[i, j] = C[i, j] + A[i, k] * B[k, j]
         return C
-
-A = matrix('1 0 0; 0 1 0; 0 0 1; 1 2 3')
-B = matrix('0 0 1 1; 0 1 0 2; 1 0 0 3')
-print(matrix_multiply(A, B))
+        
+if __name__ == '__main__':
+    A = matrix('1 0 0; 0 1 0; 0 0 1; 1 2 3')
+    B = matrix('0 0 1 1; 0 1 0 2; 1 0 0 3')
+    print(matrix_multiply(A, B))

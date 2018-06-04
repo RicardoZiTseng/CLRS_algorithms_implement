@@ -19,12 +19,13 @@ def quick_sort(A, p, r):
         quick_sort(A, p, q-1)
         quick_sort(A, q+1, r)
 
-array = [2, 8, 7, 1, 3, 5, 6, 4]
-idx = partition(array, 0, 7)
-print("after the first partition, the array A is:")
-print(array)
+if __name__ == '__main__':
+    array = [2, 8, 7, 1, 3, 5, 6, 4]
+    idx = partition(array, 0, 7)
+    print("after the first partition, the array A is:")
+    print(array)
 
-array = [2, 8, 7, 1, 3, 5, 6, 4]
-quick_sort(array, 0, 7)
-print("the quick sort result of the array A is:")
-print(array)
+    array = [2, 8, 7, 1, 3, 5, 6, 4]
+    quick_sort(array, 0, 7)
+    print("the quick sort result of the array A is:")
+    print(array)

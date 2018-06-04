@@ -44,14 +44,14 @@ def find_max_crossing_subarray(array, low, mid, high):
             max_right = j
     return (max_left, max_right, left_sum + right_sum)
 
-
-low = 0
-high = len(A) - 1
-mid = int((low + high) / 2)
-max_left, max_right, max_sum = find_max_crossing_subarray(A, low, mid, high)
-print("max_left: " + str(max_left + 1))
-print("max_right:" + str(max_right + 1))
-print("max_sum:" + str(max_sum))
+if __name__ == '__main__':
+    low = 0
+    high = len(A) - 1
+    mid = int((low + high) / 2)
+    max_left, max_right, max_sum = find_max_crossing_subarray(A, low, mid, high)
+    print("max_left: " + str(max_left + 1))
+    print("max_right:" + str(max_right + 1))
+    print("max_sum:" + str(max_sum))
 
 """
 output: 
