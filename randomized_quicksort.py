@@ -1,7 +1,7 @@
 """
 author: Ricardo
 email: ricardo_zeng@whu.edu.cn
-pages of CLRS: chinese page: page 100 in chapter 7
+pages of CLRS: chinese page: page 100 in chapter 7 
 """
 
 def partition(A, p, r):
@@ -26,7 +26,8 @@ def randomized_quicksort(A, p, r):
         randomized_quicksort(A, p, q-1)
         randomized_quicksort(A, q+1, r)
 
-array = [2, 8, 7, 1, 3, 5, 6, 4]
-randomized_quicksort(array, 0, 7)
-print("the random quick sort result of the array A is:")
-print(array)
+if __name__ == '__main__':
+    array = [2, 8, 7, 1, 3, 5, 6, 4]
+    randomized_quicksort(array, 0, 7)
+    print("the random quick sort result of the array A is:")
+    print(array)
