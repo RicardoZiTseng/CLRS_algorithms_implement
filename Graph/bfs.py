@@ -16,6 +16,7 @@ BFS(G,s)
 9               ENQUEUE(Q, v)
 """
 from pygraph.classes.graph import graph
+# you need to add the library of pygraph, the github address is here: https://github.com/Shoobx/python-graph
 from collections import deque
 
 class BFSResults:
