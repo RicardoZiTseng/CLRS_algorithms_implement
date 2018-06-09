@@ -4,8 +4,8 @@ email: ricardo_zeng@whu.edu.cn
 Define the data structure of rb_tree and rb_tree_node.
 Define the algorithms of Red-Black Tree.
 """
-BLACK = 'b'
-RED = 'r'
+BLACK = 1
+RED = 0
 
 class RBTreeNode():
     def __init__(self, value = None, color = BLACK):
