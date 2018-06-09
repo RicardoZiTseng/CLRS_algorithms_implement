@@ -25,12 +25,31 @@ class Tree:
             print(self.root.key)
             if self.root.right is not None:
                 Tree(root = self.root.right).InorderTreeWalk()
-    
+
     def TreeSearch(self, value):
         """
         Find the node of BST tree whose key is value.
+        The recursive version of BST tree search.
         @param value: The number which we need to find in the BST.
         @param type: Number
+        """
+        if self.root is None:
+            return
+        if value is self.root.key:
+            return self.root
+        elif value < self.root.key:
+            return Tree(self.root.left).TreeSearch(value)
+        else:
+            return Tree(self.root.right).TreeSearch(value)
+
+    def IterativeTreeSearch(self, value):
+        """
+        Find the node of BST tree whose key is value.
+        The recursive version of BST tree search.
+        @param value: The number which we need to find in the BST.
+        @param type: Number
+        
+        @return type: TreeNone or None
         """
         x = self.root
         if x is None:
@@ -43,21 +62,6 @@ class Tree:
             else:
                 x = x.right
         return None
-    
-    def IterativeTreeSearch(self, value):
-        """
-        The iterative version of BST tree search.
-        @param value: The number which we need to find in the BST.
-        @param type: Number
-        """
-        if self.root is None:
-            return
-        if value is self.root.key:
-            return self.root
-        elif value < self.root.key:
-            return Tree(self.root.left).IterativeTreeSearch(value)
-        else:
-            return Tree(self.root.right).IterativeTreeSearch(value)
     
     def TreeMinimum(self):
         """
@@ -93,7 +97,7 @@ class Tree:
 
     def TreeInsert(self, key):
         """
-        Inser the new node into the Binary Search T.
+        Insert the new node into the Binary Search T.
         @param key: The number need to be insert.
         @param type: Number
         """
@@ -115,11 +119,46 @@ class Tree:
             else:
                 y.right = z
     
-    def TransPlant(self):
-        pass
+    def TransPlant(self, u, v):
+        """
+        Replace a subtree base on node u with a subtree base on node v.
+        @param u: the subtree need to be replaced.
+        @param type: TreeNode
+
+        @param v: the subtree need to replace.
+        @param type: TreeNode
+
+        @return type: None
+        """
+        if u.parent is None:
+            self.root = v
+        elif u is u.parent.left:
+            u.parent.left = v
+        else:
+            u.parent.right = v
+        if v is not None:
+            v.parent = u.parent
     
-    def TreeDelete(self):
-        pass
+    def TreeDelete(self, z):
+        """
+        Delete the given node z from the Binary Search Tree.
+        @param z: the node which need to be deleted.
+        @param type: TreeNode
+        """
+        if z.left is None:
+            self.TransPlant(z, z.right)
+        else:
+            if z.right is None:
+                self.TransPlant(z, z.left)
+            else:
+                y = Tree(root = z.right).TreeMinimum()
+                if y.parent is not z:
+                    self.TransPlant(y, y.right)
+                    y.right = z.right
+                    y.right.parent = y
+                self.TransPlant(z, y)
+                y.left = z.left
+                y.left.parent = y
 
 if __name__ == "__main__":
     t = Tree()
