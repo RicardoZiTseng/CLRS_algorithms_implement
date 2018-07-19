@@ -33,6 +33,7 @@ def bfs(g, s):
 
     while(len(q)):
         v = q.popleft()
+        print(v)
         for each in g.neighbors(v):
             if each not in r.parent:
                 r.parent[each] = v

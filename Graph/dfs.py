@@ -19,30 +19,54 @@ DFS-VISIT(G, u)
 5           DFS-VISIT(G, v)   
 """
 from pygraph.classes.graph import graph
+# you need to add the library of pygraph, the github address is here: https://github.com/Shoobx/python-graph
 
 class DFSResults:
     def __init__(self):
         self.level = dict()
         self.parent = dict()
-        self.time = dict()
-        self.t = -1
+
 
 def dfs(g):
-    result = DFSResults()
-    for vertex in g.nodes:
-        if vertex not in g.parent:
-            dfs_visit(g, vertex, result)
-    return result
+    results = DFSResults()
+    for each in g.nodes():
+        if each not in results.parent:
+            dfs_visit(g, each, results)
+    return results
 
-def dfs_visit(g, node, result, parent = None):
-    result.parent[node] = parent
-    for each in g.neighbors(node):
-        if each not in result.parent:
-            dfs_visit(g, each, result, node)
-    result.t += 1
-    result.time[node] = result.t
+def dfs_visit(g, v, results, parent = None):
+    results.parent[v] = parent
+
+    for each in g.neighbors(v):
+        if each not in results.parent:
+            print(each)
+            # results.parent[each] = v
+            # results.level[each] = results.level[v] + 1
+            dfs_visit(g, each, results, v)
+    
+def print_path(r, s, v):    # in page 344
+    if v == s:
+        print("path: " + str(s))
+    elif r.parent[v] == None:
+        print("No path from %s to %s" % (str(s), str(v)))
+    else:
+        print_path(r, s, r.parent[v])
+        print("->" + str(v))
 
 if __name__ == '__main__':
-    pass
+    g = graph()
+    nodes = ['u', 'v', 'w', 'x', 'y', 'z']
+    g.add_nodes(nodes)
+    g.add_edge(('u', 'v'))
+    g.add_edge(('u', 'x'))
+    g.add_edge(('x', 'v'))
+    g.add_edge(('v', 'y'))
+    g.add_edge(('y', 'x'))
+    g.add_edge(('w', 'y'))
+    g.add_edge(('w', 'z'))
+    # for each in g.nodes():
+    #     print(each)
 
-
+    r = dfs(g)
+    print('level : %s' % str(r.level))
+    print('parent: %s' % str(r.parent))
