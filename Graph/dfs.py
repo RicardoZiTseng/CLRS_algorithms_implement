@@ -26,7 +26,6 @@ class DFSResults:
         self.level = dict()
         self.parent = dict()
 
-
 def dfs(g):
     results = DFSResults()
     for each in g.nodes():
