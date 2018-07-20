@@ -18,7 +18,7 @@ DFS-VISIT(G, u)
 4           v.pi = u
 5           DFS-VISIT(G, v)   
 """
-from pygraph.classes.graph import graph
+from pygraph.classes.digraph import digraph
 # you need to add the library of pygraph, the github address is here: https://github.com/Shoobx/python-graph
 
 class DFSResults:
@@ -26,11 +26,14 @@ class DFSResults:
         self.level = dict()
         self.parent = dict()
 
-def dfs(g):
+def dfs(g, source = None):
     results = DFSResults()
-    for each in g.nodes():
-        if each not in results.parent:
-            dfs_visit(g, each, results)
+    if source == None:
+        for each in g.nodes():
+            if each not in results.parent:
+                dfs_visit(g, each, results)
+    else:
+        dfs_visit(g, source, results)
     return results
 
 def dfs_visit(g, v, results, parent = None):
@@ -38,9 +41,7 @@ def dfs_visit(g, v, results, parent = None):
 
     for each in g.neighbors(v):
         if each not in results.parent:
-            print(each)
-            # results.parent[each] = v
-            # results.level[each] = results.level[v] + 1
+            # print(each)
             dfs_visit(g, each, results, v)
     
 def print_path(r, s, v):    # in page 344
@@ -53,7 +54,7 @@ def print_path(r, s, v):    # in page 344
         print("->" + str(v))
 
 if __name__ == '__main__':
-    g = graph()
+    g = digraph()
     nodes = ['u', 'v', 'w', 'x', 'y', 'z']
     g.add_nodes(nodes)
     g.add_edge(('u', 'v'))
@@ -63,9 +64,6 @@ if __name__ == '__main__':
     g.add_edge(('y', 'x'))
     g.add_edge(('w', 'y'))
     g.add_edge(('w', 'z'))
-    # for each in g.nodes():
-    #     print(each)
 
-    r = dfs(g)
-    print('level : %s' % str(r.level))
+    r = dfs(g, 'w')
     print('parent: %s' % str(r.parent))
