@@ -86,7 +86,7 @@ def connected_components(g):
     
     return component, v2node
         
-def same_component1(u, v, v2node):
+def same_component(u, v, v2node):
     u = v2node[u]
     v = v2node[v]
     if find_set(u) == find_set(v):
@@ -108,4 +108,4 @@ if __name__ == '__main__':
 
     component, v2node = connected_components(g)
     print(component)
-    print(same_component1('a', 'e', v2node))
+    print(same_component('a', 'e', v2node))
