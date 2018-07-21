@@ -42,3 +42,18 @@ def max_heapify(A, i):
         A[i], A[largest] = A[largest], A[i]
         max_heapify(A, largest)
     return A
+
+def max_heapify_quick(A, i):
+    count = len(A)
+    largest = count
+    while i != largest:
+        if l <= heapsize(A) and A[l] >= A[i]:
+            largest = l
+        else:
+            largest = i
+        if r <= heapsize(A) and A[r] >= A[i]:
+            largest = r
+        if largest != i:
+            A[i], A[largest] = A[largest], A[i]
+            i, largest = largest, count
+    return A
