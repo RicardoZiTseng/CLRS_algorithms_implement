@@ -24,6 +24,8 @@ class tree_node:
         self.name = name
         self.parent = None
         self.rank = None
+        self.key = None #which defined for the mst_prim algorithm in page 369
+        self.d = None # which defined for the graph shortest path in chapter 24
 
 def make_set(x):
     """
