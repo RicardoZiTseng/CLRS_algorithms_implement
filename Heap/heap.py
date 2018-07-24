@@ -44,6 +44,8 @@ def max_heapify(A, heap_size, i):
 def max_heapify_quick(A, heap_size, i):
     count = len(A)
     largest = count
+    l = left(i)
+    r = right(i)
     while i != largest:
         if l <= heap_size and A[l] >= A[i]:
             largest = l
