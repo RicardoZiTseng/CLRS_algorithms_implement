@@ -193,6 +193,10 @@ def system_of_different_constraints():
     print(g.edges())
     previous, dist = bellman_fold_notCLRS(g, 'x0')
     print(previous, dist)
+    """
+    If there is no solutions to the system, the function should
+    tell the users "no solution", we do not complete this part here.
+    """
 
 if __name__ == '__main__':
     system_of_different_constraints()
