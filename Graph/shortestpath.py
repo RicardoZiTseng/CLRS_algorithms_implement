@@ -87,7 +87,7 @@ def bellman_fold_notCLRS(graph, source):
                 predecessor[dst] = src
             elif (src in distance) and (dst in distance) and \
             (distance[dst] > distance[src] + graph.edge_weight((src, dst))):
-                distance[dst] = distance[src] + graph
+                distance[dst] = distance[src] + graph.edge_weight((src, dst))
     
     for u,v in graph.edges():
         if distance[v] > distance[u] + graph.edge_weight((u, v)):
@@ -161,5 +161,38 @@ def test_dijkstra():
     previous, dist = dijkstra(g, 's')
     print(previous, dist)
 
+def system_of_different_constraints():
+    """
+    x1 - x2 <= 0
+    x1 - x5 <= -1
+    x2 - x5 <= 1
+    x3 - x1 <= 5
+    x4 - x1 <= 4
+    x4 - x3 <= -1
+    x5 - x3 <= -3
+    x5 - x4 <= -3
+    """
+    m = int(input("Enter the number of limited conditions ->"))
+    n = int(input("Enter the number of variables ->"))
+    g = digraph()
+    for i in range(0, n+1):
+        node = 'x' + str(i)
+        g.add_node(node)
+        if i > 0:
+            g.add_edge(('x0', node), 0)
+    print(g.nodes())
+    print(g.edges())
+
+    print("Enter the conditions: ")
+    for i in range(m):
+        print("The %d-th condition:" % (i+1))
+        v1 = input("First variable: ")
+        v2 = input("Second variable: ")
+        b = int(input("Biase: "))
+        g.add_edge((v2, v1), b)
+    print(g.edges())
+    previous, dist = bellman_fold_notCLRS(g, 'x0')
+    print(previous, dist)
+
 if __name__ == '__main__':
-    test_dijkstra()
+    system_of_different_constraints()
